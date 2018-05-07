@@ -8,11 +8,11 @@
 (def accepted-cards          #{:one :many})
 
 (def schema-tx-usage
-  "#vase/schema-tx[[ _attribute-name_ _cardinality_ _type_ _toggles_* _docstring_ ]* ]")
+  "#datomic/schema[[ _attribute-name_ _cardinality_ _type_ _toggles_* _docstring_ ]* ]")
 
 (defmacro schema-problem
   [flavor actual]
-  `(str "#vase/schema-tx must look like this:\n\n"
+  `(str "#datomic/schema must look like this:\n\n"
         schema-tx-usage
         "\n\n"
         ~flavor
