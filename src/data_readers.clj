@@ -1,0 +1,1 @@
+{datomic/schema datomic-schema.core/schema-tx}
