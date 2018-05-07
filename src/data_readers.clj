@@ -1,1 +1,1 @@
-{datomic/schema datomic-schema.core/schema-tx}
+{datomic/schema dato-schema.core/schema-tx}

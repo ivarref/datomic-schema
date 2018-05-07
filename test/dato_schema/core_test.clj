@@ -1,6 +1,6 @@
-(ns datomic-schema.core-test
+(ns dato-schema.core-test
   (:require [clojure.test :refer :all]
-            [datomic-schema.core :refer :all]))
+            [dato-schema.core :refer :all]))
 
 (deftest test-schema-tx
   (are [case input expected] (testing case (= expected (map #(dissoc % :db/id) (read-string input))))
