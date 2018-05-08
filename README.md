@@ -6,7 +6,7 @@ Simplified writing of Datomic schemas.
 
 [![Clojars Project](http://clojars.org/dato-schema/latest-version.svg)](http://clojars.org/dato-schema)
 
-Add `[dato-schema "0.1.1" :exclusions [com.datomic/datomic-free]]` to your dependency vector.
+Add `[dato-schema "0.1.2" :exclusions [com.datomic/datomic-free]]` to your dependency vector.
 
 Note: Excluding datomic-free assumes you are already bundling Datomic in your project.
 
@@ -25,15 +25,18 @@ Note: Excluding datomic-free assumes you are already bundling Datomic in your pr
   :db.install/_attribute :db.part/db,
   :db/doc "Documentation"}]
 
-#datomic/schema [[:entity/attr :many :long :unique "Documentation"]]
+#datomic/schema [[:entity/attr :many :long :unique]]
 =>
 [{:db/id #db/id[:db.part/db -1000002],
   :db/ident :entity/attr,
   :db/valueType :db.type/long,
   :db/cardinality :db.cardinality/many,
   :db.install/_attribute :db.part/db,
-  :db/doc "Documentation",
   :db/unique :db.unique/value}]
+  
+#datomic/schema [[:entity/attr :enum]]
+=>
+[{:db/ident :entity/attr}]
 ```
 
 and so forth.
