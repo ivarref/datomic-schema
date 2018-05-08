@@ -45,11 +45,17 @@
                                :db/fulltext           true
                                :db/unique             :db.unique/identity
                                :db/doc                "Doc"
+                               :db.install/_attribute :db.part/db}]
+
+                             "Docstring is optional"
+                             "#datomic/schema[[:e/a :one :string]]"
+                             [{:db/ident :e/a
+                               :db/valueType          :db.type/string
+                               :db/cardinality        :db.cardinality/one
                                :db.install/_attribute :db.part/db}])
   (are [bad-input] (thrown? Throwable (read-string bad-input))
                    "#datomic/schema[[:e/a :one-is-the-lonliest-number :long \"doc\"]]"
                    "#datomic/schema[[:e :one :long \"doc\"]]"
                    "#datomic/schema[[\"not a keyword\" :one :ref \"doc\"]]"
                    "#datomic/schema[[:e/a :one :categorically-imperative \"\"]]"
-                   "#datomic/schema[[:e/a :one :ref]]"
                    "#datomic/schema[#{:e/a :one :ref \"doc\"}]"))

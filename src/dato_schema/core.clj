@@ -27,14 +27,14 @@
 
 (defn parse-schema-vec
   [s-vec]
-  (schema-assert (every? keyword? (butlast s-vec))
-                 "All of _attribute-name_, _cardinality_, _type_, and _toggles_ must be Clojure keywords."
-                 s-vec)
-  (let [doc-string            (last s-vec)
+  (let [doc-string            (when (string? (last s-vec)) (last s-vec))
+        s-vec                 (if doc-string (butlast s-vec) s-vec)
         [ident card kind & _] (take 3 s-vec)
         opt-toggles           (take-while keyword? (drop 3 s-vec))]
+    (schema-assert (every? keyword? s-vec)
+                   "All of _attribute-name_, _cardinality_, _type_, and _toggles_ must be Clojure keywords."
+                   s-vec)
     (schema-assert (some? (namespace ident)) "Ident must have namespace" ident)
-    (schema-assert (string? doc-string) "The last thing in the vector must be a docstring." s-vec)
     (schema-assert (every? #(contains? accepted-schema-toggles %) opt-toggles)
                    (str "Short schema toggles must be taken from " accepted-schema-toggles) opt-toggles)
     (schema-assert (contains? accepted-kinds kind) (str "The value type must be one of " accepted-kinds) kind)
@@ -43,8 +43,8 @@
             :db/ident              ident
             :db/valueType          (keyword "db.type" (name kind))
             :db/cardinality        (keyword "db.cardinality" (name card))
-            :db.install/_attribute :db.part/db
-            :db/doc                doc-string}
+            :db.install/_attribute :db.part/db}
+           (when doc-string {:db/doc doc-string})
            (reduce (fn [m opt]
                      (merge m (case opt
                                 :unique     {:db/unique :db.unique/value}
