@@ -52,7 +52,11 @@
                              [{:db/ident :e/a
                                :db/valueType          :db.type/string
                                :db/cardinality        :db.cardinality/one
-                               :db.install/_attribute :db.part/db}])
+                               :db.install/_attribute :db.part/db}]
+
+                             "Enum support"
+                             "#datomic/schema[[:e/a :enum]]"
+                             [{:db/ident :e/a}])
   (are [bad-input] (thrown? Throwable (read-string bad-input))
                    "#datomic/schema[[:e/a :one-is-the-lonliest-number :long \"doc\"]]"
                    "#datomic/schema[[:e :one :long \"doc\"]]"
