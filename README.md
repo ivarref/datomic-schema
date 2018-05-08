@@ -45,6 +45,7 @@ Supported types is `:keyword :string :boolean :long :bigint :float :double :bigd
 
 Supported list of toggles is `:unique :identity :index :fulltext :component :no-history`.
 
+Last parameter is an optional documentation string.
 
 ## Notes
 
