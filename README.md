@@ -14,7 +14,7 @@ Add `[dato-schema "0.1.3"]` to your dependency vector.
 ```clojure
 (require 'dato-schema.core)
 
-#datomic/schema [[:entity/attr :one :string "Documentation"]]
+#d/schema [[:entity/attr :one :string "Documentation"]]
 =>
 [{:db/id #db/id[:db.part/db -1000001],
   :db/ident :entity/attr,
@@ -23,7 +23,7 @@ Add `[dato-schema "0.1.3"]` to your dependency vector.
   :db.install/_attribute :db.part/db,
   :db/doc "Documentation"}]
 
-#datomic/schema [[:entity/attr :many :long :unique]]
+#d/schema [[:entity/attr :many :long :unique]]
 =>
 [{:db/id #db/id[:db.part/db -1000002],
   :db/ident :entity/attr,
@@ -32,7 +32,7 @@ Add `[dato-schema "0.1.3"]` to your dependency vector.
   :db.install/_attribute :db.part/db,
   :db/unique :db.unique/value}]
   
-#datomic/schema [[:entity/attr :enum]]
+#d/schema [[:entity/attr :enum]]
 =>
 [{:db/ident :entity/attr}]
 ```
