@@ -56,6 +56,10 @@
 
                              "Enum support"
                              "#datomic/schema[[:e/a :enum]]"
+                             [{:db/ident :e/a}]
+
+                             "Shorthand works"
+                             "#d/s[[:e/a :enum]]"
                              [{:db/ident :e/a}])
   (are [bad-input] (thrown? Throwable (read-string bad-input))
                    "#datomic/schema[[:e/a :one-is-the-lonliest-number :long \"doc\"]]"

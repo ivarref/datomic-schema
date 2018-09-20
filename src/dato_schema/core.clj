@@ -3,11 +3,11 @@
 
 ;; Schema literals
 ;; ---------------
-(def accepted-schema-toggles #{:unique :identity :index :fulltext :component :no-history})
-(def accepted-kinds          #{:keyword :string :boolean :long :bigint :float :double :bigdec :ref :instant :uuid :uri :bytes})
-(def accepted-cards          #{:one :many})
+(def ^:private accepted-schema-toggles #{:unique :identity :index :fulltext :component :no-history})
+(def ^:private accepted-kinds          #{:keyword :string :boolean :long :bigint :float :double :bigdec :ref :instant :uuid :uri :bytes})
+(def ^:private accepted-cards          #{:one :many})
 
-(def schema-tx-usage
+(def ^:private schema-tx-usage
   "#datomic/schema[[ _attribute-name_ _cardinality_ _type_ _toggles_* _docstring_ ]* ]")
 
 (defmacro schema-problem
@@ -25,7 +25,7 @@
   `(when-not ~f
      (throw (AssertionError. (schema-problem ~flavor ~emit)))))
 
-(defn parse-schema-vec
+(defn- parse-schema-vec
   [s-vec]
   (let [doc-string            (when (string? (last s-vec)) (last s-vec))
         s-vec                 (if doc-string (butlast s-vec) s-vec)
@@ -62,7 +62,13 @@
                        {}
                        opt-toggles))))))
 
-(defn schema-tx [form]
+(defn- schema-tx [form]
   (schema-assert (vector? form) "The top level must be a vector." form)
   (schema-assert (every? vector? form) "The top level vector must only contain other vectors" form)
   (mapv parse-schema-vec form))
+
+(defn schema [form]
+  (schema-tx form))
+
+(defn s [form]
+  (schema-tx form))

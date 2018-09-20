@@ -6,9 +6,7 @@ Simplified writing of Datomic schemas.
 
 [![Clojars Project](http://clojars.org/dato-schema/latest-version.svg)](http://clojars.org/dato-schema)
 
-Add `[dato-schema "0.1.2" :exclusions [com.datomic/datomic-free]]` to your dependency vector.
-
-Note: Excluding datomic-free assumes you are already bundling Datomic in your project.
+Add `[dato-schema "0.1.3"]` to your dependency vector.
 
 
 ## Usage
