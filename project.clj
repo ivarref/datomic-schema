@@ -1,4 +1,4 @@
-(defproject dato-schema "0.1.3-SNAPSHOT"
+(defproject dato-schema "0.1.3"
   :description "Simplified writing of datomic schemas"
   :url "https://github.com/ivarref/datomic-schema"
   :license {:name "Eclipse Public License"
