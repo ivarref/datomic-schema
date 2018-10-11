@@ -45,6 +45,36 @@ Supported list of toggles is `:unique :identity :index :fulltext :component :no-
 
 Last parameter is an optional documentation string.
 
+## Usage with conformity
+
+Add the following file to `resources/`:
+
+```
+;; resources/something.edn
+{:my-project/something-schema
+ {:txes [#d/schema[[:something/title :one :string]
+                   [:something/author :one :uuid]]]}}
+```
+
+Then in your code:
+
+```clojure
+(ns my-project.something
+  (:require [dato-schema.core] ; namespace needs to be required so that reader literal is loaded
+            [io.rkn.conformity :as c]
+            [datomic.api :as d]))
+
+(def uri "datomic:mem://my-project")
+(d/create-database uri)
+(def conn (d/connect uri))
+
+(def norms-map (c/read-resource "something.edn"))
+
+(println (str "Has attribute? " (c/has-attribute? (d/db conn) :something/title)))
+(c/ensure-conforms conn norms-map [:my-project/something-schema])
+(println (str "Has attribute? " (c/has-attribute? (d/db conn) :something/title)))
+```
+
 ## Notes
 
 This project is derived from [cognitect-labs/vase](https://github.com/cognitect-labs/vase).
