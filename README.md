@@ -47,6 +47,9 @@ Last parameter is an optional documentation string.
 
 ## Usage with conformity
 
+In order to use this library with [conformity](https://github.com/rkneufeld/conformity),
+you will need to require the namespace so that the reader literal is loaded before `conformity` runs.
+
 Add the following file to `resources/`:
 
 ```
