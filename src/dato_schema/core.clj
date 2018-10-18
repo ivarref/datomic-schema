@@ -62,7 +62,7 @@
                        {}
                        opt-toggles))))))
 
-(defn- schema-tx [form]
+(defn schema-tx [form]
   (schema-assert (vector? form) "The top level must be a vector." form)
   (schema-assert (every? vector? form) "The top level vector must only contain other vectors" form)
   (mapv parse-schema-vec form))
