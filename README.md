@@ -4,7 +4,7 @@ Simplified writing of Datomic schemas.
 
 ## Installation
 
-[![Clojars Project](http://clojars.org/dato-schema/latest-version.svg)](http://clojars.org/dato-schema)
+[![Clojars Project](http://clojars.org/ivarref/datomic-schema/latest-version.svg)](http://clojars.org/ivarref/datomic-schema)
 
 Add `[ivarref/datomic-schema "0.1.4"]` to your dependency vector.
 
