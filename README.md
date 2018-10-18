@@ -6,13 +6,13 @@ Simplified writing of Datomic schemas.
 
 [![Clojars Project](http://clojars.org/dato-schema/latest-version.svg)](http://clojars.org/dato-schema)
 
-Add `[dato-schema "0.1.3"]` to your dependency vector.
+Add `[ivarref/datomic-schema "0.1.4"]` to your dependency vector.
 
 
-## Usage
+## Usage from REPL
 
 ```clojure
-(require 'dato-schema.core)
+(require 'datomic-schema.core)
 
 #d/schema [[:entity/attr :one :string "Documentation"]]
 =>
@@ -63,7 +63,7 @@ Then in your code:
 
 ```clojure
 (ns my-project.something
-  (:require [dato-schema.core] ; namespace needs to be required so that reader literal is loaded
+  (:require [datomic-schema.core] ; namespace needs to be required so that reader literal is loaded
             [io.rkn.conformity :as c]
             [datomic.api :as d]))
 

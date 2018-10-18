@@ -1,4 +1,4 @@
-(ns dato-schema.core
+(ns datomic-schema.core
   (:require [datomic.api :as d]))
 
 ;; Schema literals
