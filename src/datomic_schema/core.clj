@@ -3,7 +3,7 @@
 
 ;; Schema literals
 ;; ---------------
-(def ^:private accepted-schema-toggles #{:unique :identity :index :fulltext :component :no-history})
+(def ^:private accepted-schema-toggles #{:unique :id :identity :index :fulltext :component :no-history})
 (def ^:private accepted-kinds #{:keyword :string :boolean :long :bigint :float :double :bigdec :ref :instant :uuid :uri :bytes})
 (def ^:private accepted-cards #{:one :many})
 
@@ -57,6 +57,7 @@
                                    (merge m (case opt
                                               :unique {:db/unique :db.unique/value}
                                               :identity {:db/unique :db.unique/identity}
+                                              :id {:db/unique :db.unique/identity}
                                               :index {:db/index true}
                                               :fulltext {:db/fulltext true
                                                          :db/index    true}

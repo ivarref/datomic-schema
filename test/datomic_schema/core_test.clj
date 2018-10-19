@@ -69,6 +69,14 @@
                                :db/unique             :db.unique/value
                                :db.install/_attribute :db.part/db}]
 
+                             ":id shorthand"
+                             "#datomic/schema[[:e/a :string :id]]"
+                             [{:db/ident :e/a
+                               :db/valueType          :db.type/string
+                               :db/cardinality        :db.cardinality/one
+                               :db/unique             :db.unique/identity
+                               :db.install/_attribute :db.part/db}]
+
                              "Enum support"
                              "#datomic/schema[[:e/a :enum]]"
                              [{:db/ident :e/a}]

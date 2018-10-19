@@ -37,6 +37,7 @@ type           = :bigdec  |
 
 toggles        = :component  |
                  :fulltext   |
+                 :id         | ; alias for :identity
                  :identity   |
                  :index      |
                  :no-history |
