@@ -12,7 +12,7 @@
 
 (defmacro schema-problem
   [flavor actual]
-  `(str "#datomic/schema must look like this:\n\n"
+  `(str "#d/schema must look like this:\n\n"
         schema-tx-usage
         "\n\n"
         ~flavor
