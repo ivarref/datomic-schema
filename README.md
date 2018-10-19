@@ -6,10 +6,48 @@ Simplified writing of Datomic schemas.
 
 [![Clojars Project](http://clojars.org/ivarref/datomic-schema/latest-version.svg)](http://clojars.org/ivarref/datomic-schema)
 
-Add `[ivarref/datomic-schema "0.1.4"]` to your dependency vector.
+Add `[ivarref/datomic-schema "0.1.5"]` to your dependency vector.
 
+## Syntax
 
-## Usage from REPL
+The syntax is
+
+```
+#d/schema[[attribute-name cardinality? type toggles* docstring?]*]
+
+attribute-name = The name of your attribute
+cardinality    = :one or :many. Defaults to :one
+type           = A type from the list below
+toggles        = Zero or more toggles
+docstring      = An optional documentation string
+
+type           = :bigdec  |
+                 :bigint  |
+                 :boolean |
+                 :bytes   |
+                 :double  |
+                 :float   |
+                 :instant |
+                 :keyword |
+                 :long    |
+                 :ref     |
+                 :string  |
+                 :uri     |
+                 :uuid
+
+toggles        = :component  |
+                 :fulltext   |
+                 :identity   |
+                 :index      |
+                 :no-history |
+                 :unique
+                 
+All arguments except docstring must be Clojure keywords.
+
+Enums are also supported: #d/schema [[attribute-name :enum]]
+```
+
+## Example usage from REPL
 
 ```clojure
 (require 'datomic-schema.core)
@@ -39,13 +77,7 @@ Add `[ivarref/datomic-schema "0.1.4"]` to your dependency vector.
 
 and so forth.
 
-Supported types is `:keyword :string :boolean :long :bigint :float :double :bigdec :ref :instant :uuid :uri :bytes`.
-
-Supported list of toggles is `:unique :identity :index :fulltext :component :no-history`.
-
-Last parameter is an optional documentation string.
-
-## Usage with conformity
+## Example usage with conformity
 
 In order to use this library with [conformity](https://github.com/rkneufeld/conformity),
 you will need to require the namespace so that the reader literal is loaded before `conformity` runs.

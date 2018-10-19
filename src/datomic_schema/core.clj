@@ -8,7 +8,7 @@
 (def ^:private accepted-cards          #{:one :many})
 
 (def ^:private schema-tx-usage
-  "#datomic/schema[[ _attribute-name_ _cardinality_ _type_ _toggles_* _docstring_ ]* ]")
+  "#d/schema[[attribute-name cardinality? type toggles* docstring]* ]")
 
 (defmacro schema-problem
   [flavor actual]
