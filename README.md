@@ -1,6 +1,6 @@
 # datomic-schema
 
-Simplified writing of Datomic schemas.
+Simplified writing of [Datomic schemas](https://docs.datomic.com/on-prem/schema.html).
 
 ## Installation
 
@@ -41,7 +41,7 @@ toggles        = :component  |
                  :index      |
                  :no-history |
                  :unique
-                 
+
 All arguments except docstring must be Clojure keywords.
 
 Enums are also supported: #d/schema [[attribute-name :enum]]

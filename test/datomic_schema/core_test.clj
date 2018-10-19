@@ -54,6 +54,21 @@
                                :db/cardinality        :db.cardinality/one
                                :db.install/_attribute :db.part/db}]
 
+                             "Cardinality is optional"
+                             "#datomic/schema[[:e/a :string]]"
+                             [{:db/ident :e/a
+                               :db/valueType          :db.type/string
+                               :db/cardinality        :db.cardinality/one
+                               :db.install/_attribute :db.part/db}]
+
+                             "Cardinality is optional and works with toggles"
+                             "#datomic/schema[[:e/a :string :unique]]"
+                             [{:db/ident :e/a
+                               :db/valueType          :db.type/string
+                               :db/cardinality        :db.cardinality/one
+                               :db/unique             :db.unique/value
+                               :db.install/_attribute :db.part/db}]
+
                              "Enum support"
                              "#datomic/schema[[:e/a :enum]]"
                              [{:db/ident :e/a}]
