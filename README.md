@@ -21,27 +21,27 @@ type           = A type from the list below
 toggles        = Zero or more toggles
 docstring      = An optional documentation string
 
-type           = :bigdec  |
-                 :bigint  |
-                 :boolean |
-                 :bytes   |
-                 :double  |
-                 :float   |
-                 :instant |
-                 :keyword |
-                 :long    |
-                 :ref     |
-                 :string  |
-                 :uri     |
-                 :uuid
+type           = :bigdec
+               | :bigint
+               | :boolean
+               | :bytes
+               | :double
+               | :float
+               | :instant
+               | :keyword
+               | :long
+               | :ref
+               | :string
+               | :uri
+               | :uuid
 
-toggles        = :component  |
-                 :fulltext   |
-                 :id         | ; alias for :identity
-                 :identity   |
-                 :index      |
-                 :no-history |
-                 :unique
+toggles        = :component
+               | :fulltext
+               | :id         ; alias for :identity
+               | :identity
+               | :index
+               | :no-history
+               | :unique
 
 All arguments except docstring must be Clojure keywords.
 
