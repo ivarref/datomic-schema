@@ -48,8 +48,7 @@
                   (schema-assert (contains? accepted-cards card) (str "The cardinality must be one of " accepted-cards) card)
                   (merge {:db/ident              ident
                           :db/valueType          (keyword "db.type" (name kind))
-                          :db/cardinality        (keyword "db.cardinality" (name card))
-                          :db.install/_attribute :db.part/db}
+                          :db/cardinality        (keyword "db.cardinality" (name card))}
                          (when doc-string {:db/doc doc-string})
                          (reduce (fn [m opt]
                                    (merge m (case opt
