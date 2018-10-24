@@ -55,20 +55,16 @@ Enums are also supported: #d/schema [[attribute-name :enum]]
 
 #d/schema [[:entity/attr :one :string "Documentation"]]
 =>
-[{:db/id #db/id[:db.part/db -1000001],
-  :db/ident :entity/attr,
+[{:db/ident :entity/attr,
   :db/valueType :db.type/string,
   :db/cardinality :db.cardinality/one,
-  :db.install/_attribute :db.part/db,
   :db/doc "Documentation"}]
 
 #d/schema [[:entity/attr :many :long :unique]]
 =>
-[{:db/id #db/id[:db.part/db -1000002],
-  :db/ident :entity/attr,
+[{:db/ident :entity/attr,
   :db/valueType :db.type/long,
   :db/cardinality :db.cardinality/many,
-  :db.install/_attribute :db.part/db,
   :db/unique :db.unique/value}]
   
 #d/schema [[:entity/attr :enum]]
