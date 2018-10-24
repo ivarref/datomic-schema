@@ -46,9 +46,9 @@
                                  (str "Short schema toggles must be taken from " accepted-schema-toggles) opt-toggles)
                   (schema-assert (contains? accepted-kinds kind) (str "The value type must be one of " accepted-kinds) kind)
                   (schema-assert (contains? accepted-cards card) (str "The cardinality must be one of " accepted-cards) card)
-                  (merge {:db/ident              ident
-                          :db/valueType          (keyword "db.type" (name kind))
-                          :db/cardinality        (keyword "db.cardinality" (name card))}
+                  (merge {:db/ident       ident
+                          :db/valueType   (keyword "db.type" (name kind))
+                          :db/cardinality (keyword "db.cardinality" (name card))}
                          (when doc-string {:db/doc doc-string})
                          (reduce (fn [m opt]
                                    (merge m (case opt

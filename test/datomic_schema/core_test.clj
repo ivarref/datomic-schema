@@ -3,27 +3,24 @@
             [datomic-schema.core :refer :all]))
 
 (deftest test-schema-tx
-  (are [case input expected] (testing case (= expected (map #(dissoc % :db/id) (read-string input))))
+  (are [case input expected] (testing case (= expected (read-string input)))
                              "One attribute"
                              "#datomic/schema[[:entity/attribute :one :long \"A docstring\"]]"
                              [{:db/ident              :entity/attribute
                                :db/valueType          :db.type/long
                                :db/cardinality        :db.cardinality/one
-                               :db/doc                "A docstring"
-                               :db.install/_attribute :db.part/db}]
+                               :db/doc                "A docstring"}]
 
                              "Two attributes"
                              "#datomic/schema[[:e/a1 :one :long \"\"] [:e/a2 :many :string \"docstring 2\"]]"
                              [{:db/ident              :e/a1
                                :db/valueType          :db.type/long
                                :db/cardinality        :db.cardinality/one
-                               :db/doc                ""
-                               :db.install/_attribute :db.part/db}
+                               :db/doc                ""}
                               {:db/ident              :e/a2
                                :db/valueType          :db.type/string
                                :db/cardinality        :db.cardinality/many
-                               :db/doc                "docstring 2"
-                               :db.install/_attribute :db.part/db}]
+                               :db/doc                "docstring 2"}]
 
                              "One toggle"
                              "#datomic/schema[[:e/a :one :long :identity \"Doc\"]]"
@@ -31,8 +28,7 @@
                                :db/valueType          :db.type/long
                                :db/cardinality        :db.cardinality/one
                                :db/unique             :db.unique/identity
-                               :db/doc                "Doc"
-                               :db.install/_attribute :db.part/db}]
+                               :db/doc                "Doc"}]
 
                              "Several toggles"
                              "#datomic/schema[[:e/a :one :string :identity :index :component :no-history :fulltext \"Doc\"]]"
@@ -44,38 +40,33 @@
                                :db/noHistory          true
                                :db/fulltext           true
                                :db/unique             :db.unique/identity
-                               :db/doc                "Doc"
-                               :db.install/_attribute :db.part/db}]
+                               :db/doc                "Doc"}]
 
                              "Docstring is optional"
                              "#datomic/schema[[:e/a :one :string]]"
                              [{:db/ident :e/a
                                :db/valueType          :db.type/string
-                               :db/cardinality        :db.cardinality/one
-                               :db.install/_attribute :db.part/db}]
+                               :db/cardinality        :db.cardinality/one}]
 
                              "Cardinality is optional"
                              "#datomic/schema[[:e/a :string]]"
                              [{:db/ident :e/a
                                :db/valueType          :db.type/string
-                               :db/cardinality        :db.cardinality/one
-                               :db.install/_attribute :db.part/db}]
+                               :db/cardinality        :db.cardinality/one}]
 
                              "Cardinality is optional and works with toggles"
                              "#datomic/schema[[:e/a :string :unique]]"
                              [{:db/ident :e/a
                                :db/valueType          :db.type/string
                                :db/cardinality        :db.cardinality/one
-                               :db/unique             :db.unique/value
-                               :db.install/_attribute :db.part/db}]
+                               :db/unique             :db.unique/value}]
 
                              ":id shorthand"
                              "#datomic/schema[[:e/a :string :id]]"
                              [{:db/ident :e/a
                                :db/valueType          :db.type/string
                                :db/cardinality        :db.cardinality/one
-                               :db/unique             :db.unique/identity
-                               :db.install/_attribute :db.part/db}]
+                               :db/unique             :db.unique/identity}]
 
                              "Enum support"
                              "#datomic/schema[[:e/a :enum]]"
