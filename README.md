@@ -126,9 +126,9 @@ Then in your code:
 @(d/transact conn #d/schema[[:m/id :string :id]
                             [:m/info :string]])
 
-@(d/transact conn [{:m/id "id1" :m/info "Hello"}])
+@(d/transact conn [{:m/id "id1" :m/info "Hello"}]) ; upsert (insert)
 
-@(d/transact conn [{:m/id "id1" :m/info "Hello2"}])
+@(d/transact conn [{:m/id "id1" :m/info "Hello2"}]) ; upsert (update)
 
 (println (d/pull (d/db conn) '[:*] [:m/id "id1"]))
 ; {:db/id 17592186045418, :m/id id1, :m/info Hello2}
