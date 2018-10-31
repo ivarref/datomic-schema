@@ -107,6 +107,33 @@ Then in your code:
 (println (str "Has attribute? " (c/has-attribute? (d/db conn) :something/title)))
 ```
 
+## Example development usage
+
+```clojure
+(ns dato-ivre.dev-demo
+  (:require [datomic.api :as d]
+            [datomic-schema.core]))
+
+(defn create-empty-in-memory-db []
+  (let [uri "datomic:mem://pet-owners-test-db"]
+    (d/delete-database uri)
+    (d/create-database uri)
+    (let [conn (d/connect uri)]
+      conn)))
+
+(def conn (create-empty-in-memory-db))
+
+@(d/transact conn #d/schema[[:m/id :string :id]
+                            [:m/info :string]])
+
+@(d/transact conn [{:m/id "id1" :m/info "Hello"}])
+
+@(d/transact conn [{:m/id "id1" :m/info "Hello2"}])
+
+(println (d/pull (d/db conn) '[:*] [:m/id "id1"]))
+; {:db/id 17592186045418, :m/id id1, :m/info Hello2}
+```
+
 ## Notes
 
 This project is derived from [cognitect-labs/vase](https://github.com/cognitect-labs/vase).
