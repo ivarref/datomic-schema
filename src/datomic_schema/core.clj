@@ -4,7 +4,7 @@
 ;; Schema literals
 ;; ---------------
 (def ^:private accepted-schema-toggles #{:unique :id :identity :index :fulltext :component :no-history})
-(def ^:private accepted-kinds #{:keyword :string :boolean :long :bigint :float :double :bigdec :ref :instant :uuid :uri :bytes})
+(def ^:private accepted-kinds (into (sorted-set) #{:keyword :string :boolean :long :bigint :float :double :bigdec :ref :instant :uuid :uri :bytes :symbol}))
 (def ^:private accepted-cards #{:one :many})
 
 (def ^:private schema-tx-usage

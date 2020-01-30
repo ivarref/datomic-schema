@@ -97,6 +97,12 @@
                                :db/tupleType   :db.type/keyword
                                :db/cardinality :db.cardinality/one}]
 
+                             "Symbols"
+                             "#d/schema[[:e/symbol :symbol]]"
+                             [{:db/ident       :e/symbol
+                               :db/valueType   :db.type/symbol
+                               :db/cardinality :db.cardinality/one}]
+
                              "Enum support"
                              "#datomic/schema[[:e/a :enum]]"
                              [{:db/ident :e/a}]
