@@ -83,6 +83,13 @@
                                :db/tupleTypes  [:db.type/long :db.type/long]
                                :db/cardinality :db.cardinality/one}]
 
+                             "Fully qualified named heterogeneous tuple"
+                             "#datomic/schema[[:player/location [:db.type/long :db.type/long]]]"
+                             [{:db/ident       :player/location
+                               :db/valueType   :db.type/tuple
+                               :db/tupleTypes  [:db.type/long :db.type/long]
+                               :db/cardinality :db.cardinality/one}]
+
                              "Homogeneous Tuples"
                              "#datomic/schema[[:db/tupleAttrs [:keyword]]]"
                              [{:db/ident       :db/tupleAttrs
