@@ -50,8 +50,6 @@ toggles        = :component
                | :no-history
                | :unique
 
-All arguments except docstring must be Clojure keywords.
-
 Enums are also supported: #d/schema [[attribute-name :enum]]
 ```
 
