@@ -134,9 +134,10 @@ Then in your code:
 ; {:db/id 17592186045418, :m/id id1, :m/info Hello2}
 ```
 
-## Notes
+## Acknowledgements
 
 This project is derived from [cognitect-labs/vase](https://github.com/cognitect-labs/vase).
+Please see their [LICENSE](https://github.com/cognitect-labs/vase/blob/master/LICENSE).
 
 ## License
 
