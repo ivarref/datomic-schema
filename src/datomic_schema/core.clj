@@ -3,7 +3,7 @@
 
 ;; Schema literals
 ;; ---------------
-(def ^:private accepted-schema-toggles #{:unique :id :identity :index :fulltext :component :no-history})
+(def ^:private accepted-schema-toggles #{:unique :id :identity :index :indexed :fulltext :component :no-history})
 (def ^:private accepted-kinds (into (sorted-set) #{:keyword :string :boolean :long :bigint :float :double :bigdec :ref :instant :uuid :uri :bytes :symbol}))
 (def ^:private accepted-cards #{:one :many})
 
@@ -40,7 +40,7 @@
 (defn- tuple-attrs [attrs]
   (if (= 1 (count attrs))
     (some->> (tuple-scalar (first attrs))
-             (assoc {} :db/tupleType)) ; Homogeneous Tuples
+             (assoc {} :db/tupleType))                      ; Homogeneous Tuples
     (when (and (>= (count attrs) 2)
                (<= (count attrs) 8))
       (cond (every? tuple-scalar attrs)
@@ -101,6 +101,7 @@
                                         :identity {:db/unique :db.unique/identity}
                                         :id {:db/unique :db.unique/identity}
                                         :index {:db/index true}
+                                        :indexed {:db/index true}
                                         :fulltext {:db/fulltext true
                                                    :db/index    true}
                                         :component {:db/isComponent true}

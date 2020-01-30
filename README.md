@@ -32,14 +32,21 @@ type           = :bigdec
                | :long
                | :ref
                | :string
+               | :symbol
                | :uri
                | :uuid
+               | tuple-type
+
+tuple-type     = Composite tuple: a 2-8 length vector referring other attributes
+               | Heterogeneous fixed length tuples: a 2-8 length vector referring scalar types such as :long, :string, etc.
+               | Homogeneous variable length tuples: a 1 length vector referring a single scalar type.
 
 toggles        = :component
                | :fulltext
                | :id         ; alias for :identity
                | :identity
                | :index
+               | :indexed    ; alias for :index
                | :no-history
                | :unique
 
@@ -143,7 +150,7 @@ Please see their [LICENSE](https://github.com/cognitect-labs/vase/blob/master/LI
 
 Copyright © 2015-2017 Cognitect, Inc. All rights reserved.
 
-Copyright © 2018 Ivar Refsdal.
+Copyright © 2018-2020 Ivar Refsdal.
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
