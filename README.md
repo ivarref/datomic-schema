@@ -6,7 +6,7 @@ Simplified writing of [Datomic schemas](https://docs.datomic.com/on-prem/schema.
 
 [![Clojars Project](http://clojars.org/ivarref/datomic-schema/latest-version.svg)](http://clojars.org/ivarref/datomic-schema)
 
-Add `[ivarref/datomic-schema "0.1.8"]` to your dependency vector.
+Add `[ivarref/datomic-schema "0.2.0"]` to your dependency vector.
 
 ## Syntax
 
@@ -117,7 +117,7 @@ Then in your code:
 ```clojure
 (ns dato-ivre.dev-demo
   (:require [datomic.api :as d]
-            [datomic-schema.core]))
+            [datomic-schema.core])) ; namespace needs to be required so that reader literal is loaded
 
 (defn create-empty-in-memory-db []
   (let [uri "datomic:mem://pet-owners-test-db"]
