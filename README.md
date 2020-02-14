@@ -57,24 +57,27 @@ Enums are also supported: #d/schema [[attribute-name :enum]]
 
 ```clojure
 (require 'datomic-schema.core)
+; namespace needs to be required so that reader literal is loaded
 
 #d/schema [[:entity/attr :one :string "Documentation"]]
-=>
-[{:db/ident :entity/attr,
-  :db/valueType :db.type/string,
-  :db/cardinality :db.cardinality/one,
-  :db/doc "Documentation"}]
+=> [#:db{:ident :entity/attr
+         :cardinality :db.cardinality/one
+         :valueType :db.type/string
+         :doc "Documentation"}]
+
+#d/schema [[:entity/attr :string]] ; default cardinality is :one
+=> [#:db{:ident :entity/attr
+         :cardinality :db.cardinality/one
+         :valueType :db.type/string}]
 
 #d/schema [[:entity/attr :many :long :unique]]
-=>
-[{:db/ident :entity/attr,
-  :db/valueType :db.type/long,
-  :db/cardinality :db.cardinality/many,
-  :db/unique :db.unique/value}]
-  
+=> [#:db{:ident :entity/attr
+         :cardinality :db.cardinality/many
+         :valueType :db.type/long
+         :unique :db.unique/value}]
+
 #d/schema [[:entity/attr :enum]]
-=>
-[{:db/ident :entity/attr}]
+=> [#:db{:ident :entity/attr}]
 ```
 
 and so forth.
