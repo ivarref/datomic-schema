@@ -56,27 +56,36 @@ Enums are also supported: #d/schema [[attribute-name :enum]]
 ## Example usage from REPL
 
 ```clojure
-(require 'datomic-schema.core)
-; namespace needs to be required so that reader literal is loaded
+(require 'datomic-schema.core) ; namespace needs to be required so that reader literal is loaded
 
 #d/schema [[:entity/attr :one :string "Documentation"]]
-=> [#:db{:ident :entity/attr
+=> [#:db{:ident       :entity/attr
          :cardinality :db.cardinality/one
-         :valueType :db.type/string
-         :doc "Documentation"}]
+         :valueType   :db.type/string
+         :doc         "Documentation"}]
 
 #d/schema [[:entity/attr :string]] ; default cardinality is :one
-=> [#:db{:ident :entity/attr
+=> [#:db{:ident       :entity/attr
          :cardinality :db.cardinality/one
-         :valueType :db.type/string}]
+         :valueType   :db.type/string}]
 
-#d/schema [[:entity/attr :many :long :unique]]
-=> [#:db{:ident :entity/attr
+#d/schema [[:entity/attr :many :long]] ; cardinality :many
+=> [#:db{:ident       :entity/attr
          :cardinality :db.cardinality/many
-         :valueType :db.type/long
-         :unique :db.unique/value}]
+         :valueType   :db.type/long}]
 
-#d/schema [[:entity/attr :enum]]
+#d/schema [[:entity/id :uuid :id]] ; use :id toggle for :db.unique/identity
+=> [#:db{:ident       :entity/id
+         :cardinality :db.cardinality/one
+         :valueType   :db.type/uuid
+         :unique      :db.unique/identity}]
+
+#d/schema [[:e/id :uuid :id]
+           [:e/info :string]] ; multiple attribute definitions
+=> [#:db{:ident :e/id   :cardinality :db.cardinality/one :valueType :db.type/uuid :unique :db.unique/identity}
+    #:db{:ident :e/info :cardinality :db.cardinality/one :valueType :db.type/string}]
+
+#d/schema [[:entity/attr :enum]] ; enums
 => [#:db{:ident :entity/attr}]
 ```
 
